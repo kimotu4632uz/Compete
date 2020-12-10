@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "atcoder gen",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "cargo compete new ${input:contest_id}",
+            "problemMatcher": []
+        },
+        {
+            "label": "atcoder test",
+            "type": "shell",
+            "command": "cd ${fileDirname}; cd ../..; cargo compete test ${fileBasenameNoExtension}",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "atcoder submit",
+            "type": "shell",
+            "command": "cd ${fileDirname}; cd ../..; cargo compete submit ${fileBasenameNoExtension}",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "contest_id",
+            "type": "promptString",
+            "description": "new contest id"
+        }
+    ]
+}
