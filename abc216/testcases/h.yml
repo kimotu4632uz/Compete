@@ -6,25 +6,21 @@ match: Lines
 cases:
   - name: sample1
     in: |
-      3 3
+      2 2
       1 2
-      2 3
-      3 2
     out: |
-      7
+      374341633
   - name: sample2
     in: |
-      3 0
+      2 2
+      10 100
     out: |
-      3
+      1
   - name: sample3
     in: |
-      4 4
-      1 2
-      2 3
-      3 4
-      4 1
+      10 832
+      73 160 221 340 447 574 720 742 782 970
     out: |
-      16
+      553220346
 
 extend: []

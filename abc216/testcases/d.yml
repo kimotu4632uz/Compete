@@ -6,13 +6,21 @@ match: Lines
 cases:
   - name: sample1
     in: |
-      0 1
-    out: |
+      2 2
       2
+      1 2
+      2
+      1 2
+    out: |
+      Yes
   - name: sample2
     in: |
-      0 0
+      2 2
+      2
+      1 2
+      2
+      2 1
     out: |
-      0
+      No
 
 extend: []

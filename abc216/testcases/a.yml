@@ -6,21 +6,18 @@ match: Lines
 cases:
   - name: sample1
     in: |
-      4 1
-      2 3 4 9
+      15.8
     out: |
-      2 1
+      15+
   - name: sample2
     in: |
-      3 3
-      2 3 5
+      1.0
     out: |
-      0 3
+      1-
   - name: sample3
     in: |
-      9 8
-      137 55 56 60 27 28 133 56 55
+      12.5
     out: |
-      1 4
+      12
 
 extend: []

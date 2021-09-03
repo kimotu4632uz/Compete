@@ -24,6 +24,12 @@
             "type": "shell",
             "command": "cd ${fileDirname}; cd ../..; cargo compete submit ${fileBasenameNoExtension}",
             "problemMatcher": []
+        },
+        {
+            "label": "atcoder build",
+            "type": "shell",
+            "command": "cd ${fileDirname}; cd ../..; cargo build --bin ${PWD##*/}-${fileBasenameNoExtension} --manifest-path ./Cargo.toml",
+            "problemMatcher": []
         }
     ],
     "inputs": [
