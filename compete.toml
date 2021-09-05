@@ -10,7 +10,6 @@
 #
 # - `kebabcase`: Convert to kebab case (by using the `heck` crate)
 test-suite = "{{ manifest_dir }}/testcases/{{ problem | kebabcase }}.yml"
-#test-suite = "./testcases/{{ contest }}/{{ problem | kebabcase }}.yml"
 
 # Open files with the command (`jq` command that outputs `string[] | string[][]`)
 #
@@ -85,13 +84,12 @@ smallvec = "=1.2.0"
 kind = "inline"
 content = '''
 #![allow(unused_imports)]
-use proconio::{fastout, input};
-use proconio::marker::Chars;
+use proconio::{input, fastout};
 
 #[fastout]
 fn main() {
-    input! {
-    }
+  input! {
+  }
 }
 '''
 
