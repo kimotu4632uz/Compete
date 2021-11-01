@@ -18,10 +18,10 @@ fn main() {
     s: Chars,
   }
 
-  let mut dp = nested_vec![0; n; 1 << 10; 10];
+  let mut dp = nested_vec![0i64; n; 1 << 10; 10];
 
   let ascii_a = 'A' as i32;
-  let modu = 998244353;
+  let modu = 998244353i64;
 
   for i in 0..n {
     let c = s[i] as i32 - ascii_a;
@@ -44,7 +44,7 @@ fn main() {
     }
   }
 
-  let mut result = 0;
+  let mut result = 0i64;
 
   for u in 0..(1 << 10) {
     for last in 0..10 {
