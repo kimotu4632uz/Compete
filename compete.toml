@@ -1,44 +1,28 @@
 # Path to the test file (Liquid template)
-#
-# Variables:
-#
-# - `manifest_dir`: Package directory
-# - `contest`:      Contest ID (e.g. "abc100")
-# - `problem`:      Problem index (e.g. "A", "B")
-#
-# Additional filters:
-#
-# - `kebabcase`: Convert to kebab case (by using the `heck` crate)
-test-suite = "{{ manifest_dir }}/testcases/{{ problem | kebabcase }}.yml"
-
-# Open files with the command (`jq` command that outputs `string[] | string[][]`)
-#
-# VSCode:
-#open = '[["code", "-a", .manifest_dir], ["code"] + (.paths | map([.src, .test_suite]) | flatten)]'
-# Emacs:
-#open = '["emacsclient", "-n"] + (.paths | map([.src, .test_suite]) | flatten)'
+test-suite = "{{ manifest_dir }}/testcases/{{ bin_alias }}.yml"
 
 [new]
-# Platform
-#
-# - atcoder
-# - codeforces
-# - yukicoder
+kind = "cargo-compete"
 platform = "atcoder"
-# Path (Liquid template)
-#
-# Variables:
-#
-# - `contest`:      Contest ID. **May be nil**
-# - `package_name`: Package name
 path = "./{{ contest }}"
 
-[new.template]
-lockfile = "./template-cargo-lock.toml"
+[template]
+src = '''
+#![allow(unused_imports)]
+use proconio::{input, fastout};
 
-[new.template.dependencies]
-kind = "inline"
-content = '''
+#[fastout]
+fn main() {
+  input! {
+  }
+}
+'''
+
+[template.new.copy-files]
+"./template-cargo-lock.toml" = "Cargo.lock"
+
+[template.new]
+dependencies = '''
 num = "=0.2.1"
 num-bigint = "=0.2.6"
 num-complex = "=0.2.4"
@@ -79,27 +63,3 @@ whiteread = "=0.5.0"
 rustc-hash = "=1.1.0"
 smallvec = "=1.2.0"
 '''
-
-[new.template.src]
-kind = "inline"
-content = '''
-#![allow(unused_imports)]
-use proconio::{input, fastout};
-
-#[fastout]
-fn main() {
-  input! {
-  }
-}
-'''
-
-#[submit.transpile]
-#kind = "command"
-#args = ["cargo", "equip", "--oneline", "mods", "--rustfmt", "--check", "--bin", "{{ bin_name }}"]
-#language_id = ""
-
-#[submit.via-binary]
-#target = "x86_64-unknown-linux-musl"
-##cross = "cross"
-#strip = "strip"
-##upx = "upx"

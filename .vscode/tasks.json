@@ -1,19 +1,29 @@
 {
     "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "contest_id",
+            "type": "promptString",
+            "description": "new contest id"
+        }
+    ],
     "tasks": [
         {
-            "label": "atcoder gen",
+            "label": "atcoder new",
             "type": "shell",
+            "command": "USER=kimotu cargo compete new ${input:contest_id}",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "cargo compete new ${input:contest_id}",
             "problemMatcher": []
         },
         {
             "label": "atcoder test",
             "type": "shell",
-            "command": "cd ${fileDirname}; cd ../..; cargo compete test ${fileBasenameNoExtension}",
+            "command": "cargo compete test ${fileBasenameNoExtension}",
+            "options": {
+                "cwd": "${fileDirname}/../.."
+            },
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -22,21 +32,42 @@
         {
             "label": "atcoder submit",
             "type": "shell",
-            "command": "cd ${fileDirname}; cd ../..; cargo compete submit ${fileBasenameNoExtension}",
+            "command": "cargo compete submit ${fileBasenameNoExtension}",
+            "options": {
+                "cwd": "${fileDirname}/../.."
+            },
             "problemMatcher": []
         },
         {
             "label": "atcoder build",
             "type": "shell",
-            "command": "cd ${fileDirname}; cd ../..; cargo build --bin ${PWD##*/}-${fileBasenameNoExtension} --manifest-path ./Cargo.toml",
-            "problemMatcher": []
-        }
-    ],
-    "inputs": [
+            "command": [
+                "cd ${fileDirname}/../.. &&",
+                "cargo build --bin ${PWD##*/}-${fileBasenameNoExtension} --manifest-path ./Cargo.toml"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
         {
-            "id": "contest_id",
-            "type": "promptString",
-            "description": "new contest id"
+            "label": "atcoder pre-debug",
+            "type": "shell",
+            "command": [
+                "cd ${fileDirname}/../.. &&",
+                "mv ../target/debug/{${PWD##*/}-${fileBasenameNoExtension},${fileBasenameNoExtension}}"
+            ],
+        },
+        {
+            "label": "atcoder post-debug",
+            "type": "shell",
+            "command": [
+                "cd ${fileDirname}/../.. &&",
+                "mv ../target/debug/{${fileBasenameNoExtension},${PWD##*/}-${fileBasenameNoExtension}}"
+            ],
         }
     ]
 }
