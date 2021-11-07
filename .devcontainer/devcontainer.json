@@ -2,7 +2,7 @@
     "name": "Compete",
     "dockerFile": "Dockerfile",
     "extensions": [
-		  "rust-lang.rust",
-		  "vadimcn.vscode-lldb"
-	],
+        "rust-lang.rust",
+        "vadimcn.vscode-lldb"
+    ],
 }
