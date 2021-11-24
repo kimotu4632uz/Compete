@@ -1,7 +1,6 @@
 [package]
 name = "abc218"
 version = "0.1.0"
-authors = ["kimotu"]
 edition = "2018"
 
 [package.metadata.cargo-compete.bin]
@@ -45,6 +44,7 @@ path = "src/bin/g.rs"
 [[bin]]
 name = "abc218-h"
 path = "src/bin/h.rs"
+
 [dependencies]
 num = "=0.2.1"
 num-bigint = "=0.2.6"
@@ -85,4 +85,5 @@ text_io = "=0.1.8"
 whiteread = "=0.5.0"
 rustc-hash = "=1.1.0"
 smallvec = "=1.2.0"
+
 [dev-dependencies]
