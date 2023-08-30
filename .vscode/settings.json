@@ -1,0 +1,8 @@
+{
+    "editor.tabSize": 4,
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ -std=c++20 -I . -g $fileName && ./a.out",
+    },
+    "cmake.configureOnOpen": false
+}

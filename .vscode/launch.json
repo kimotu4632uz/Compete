@@ -1,15 +1,25 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "lldb",
-      "request": "launch",
-      "name": "Debug",
-      "cwd": "${workspaceFolder}",
-      "program": "target/debug/${fileBasenameNoExtension}",
-      "initCommands": ["settings set target.disable-aslr false"],
-      "preLaunchTask": "atcoder pre-debug",
-      "postDebugTask": "atcoder post-debug"
-    }
-  ]
+    "configurations": [
+        {
+            "name": "C++ Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+            ],
+            "preLaunchTask": "GCC Build"
+        },
+    ],
+    "version": "2.0.0"
 }

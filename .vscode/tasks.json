@@ -1,73 +1,56 @@
 {
     "version": "2.0.0",
-    "inputs": [
-        {
-            "id": "contest_id",
-            "type": "promptString",
-            "description": "new contest id"
-        }
-    ],
     "tasks": [
         {
-            "label": "atcoder new",
-            "type": "shell",
-            "command": "USER=kimotu cargo compete new ${input:contest_id}",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "atcoder test",
-            "type": "shell",
-            "command": "cargo compete test ${fileBasenameNoExtension}",
-            "options": {
-                "cwd": "${fileDirname}/../.."
-            },
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "atcoder submit",
-            "type": "shell",
-            "command": "cargo compete submit ${fileBasenameNoExtension}",
-            "options": {
-                "cwd": "${fileDirname}/../.."
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "atcoder build",
-            "type": "shell",
-            "command": [
-                "cd ${fileDirname}/../.. &&",
-                "cargo build --bin ${PWD##*/}-${fileBasenameNoExtension} --manifest-path ./Cargo.toml"
+            "type": "cppbuild",
+            "label": "build",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}"
             ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "problemMatcher": [
-                "$rustc"
+                "$gcc"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+        },
+        {
+            "label": "atcoder new",
+            "type": "shell",
+            "command": "acc new ${input:atcoder_id}",
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "oj t -N",
+            "dependsOn": [
+                "build"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
             }
         },
         {
-            "label": "atcoder pre-debug",
+            "label": "submit",
             "type": "shell",
-            "command": [
-                "cd ${fileDirname}/../.. &&",
-                "mv ../target/debug/{${PWD##*/}-${fileBasenameNoExtension},${fileBasenameNoExtension}}"
-            ],
-        },
+            "command": "acc submit ${fileBasename} -- -y",
+            "options": {
+                "cwd": "${fileDirname}"
+            }
+        }
+    ],
+    "inputs": [
         {
-            "label": "atcoder post-debug",
-            "type": "shell",
-            "command": [
-                "cd ${fileDirname}/../.. &&",
-                "mv ../target/debug/{${fileBasenameNoExtension},${PWD##*/}-${fileBasenameNoExtension}}"
-            ],
+            "id": "atcoder_id",
+            "description": "atcoder contest id",
+            "type": "promptString"
         }
     ]
 }
