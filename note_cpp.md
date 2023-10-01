@@ -1,0 +1,4 @@
+- vector内でi以上の最初の値がほしい
+    - 二分探索 -> lower_bound
+
+- priority_queue: [リファレンス](https://cpprefjp.github.io/reference/queue/queue.html)
