@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define irep(i, n) for (int i = (n-1); i >= 0; --i)
+constexpr auto iv(int begin, int end) { return ranges::iota_view(begin, end); }
+constexpr auto iv(int end) { return ranges::iota_view(0, end); }
 #define all(v) v.begin(), v.end()
 
 int main() {
