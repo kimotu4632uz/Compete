@@ -1,35 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-#define rep(i, n) for (int i = 0; i < (n); ++i)
-#define irep(i, n) for (int i = (n-1); i >= 0; --i)
-#define all(v) v.begin(), v.end()
+constexpr auto seq(int begin, int end) { return ranges::iota_view(begin, end); }
+constexpr auto seq(int end) { return ranges::iota_view(0, end); }
+#define all(v) std::ranges::begin((v)), std::ranges::end((v))
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
-    int n,m,p;
+    ll n, m, p;
     cin >> n >> m >> p;
-    vector<int> a(n), b(m);
-    rep(i,n) cin >> a[i];
-    rep(i,m) cin >> b[i];
+    vector<ll> a(n), b(m);
+    for (auto& e: a) cin >> e;
+    for (auto& e: b) cin >> e;
 
-    sort(all(a)); sort(all(b));
+    ranges::sort(b);
+    
+    vector<ll> bsum(m);
+    bsum[0] = b[0];
+    for (int i: seq(1,m)) {
+        bsum[i] = bsum[i-1] + b[i];
+    }
+
     ll ans=0;
-    rep(i,n) {
-        if (a[i] >= p) {
-            ans += p*(n-i)*m;
-            break;
+    for (int i: seq(n)) {
+        auto it = ranges::lower_bound(b, p-a[i]);
+        int k = m;
+        if (it != b.end()) {
+            k = distance(b.begin(), it);
         }
-        int r = p-a[i];
-        rep(j,m) {
-            if (b[j] >= r) {
-                ans += p*(m-j);
-                break;
-            } else {
-                ans += a[i]+b[j];
-            }
+        
+        if (k == 0) {
+            ans += p*m;
+        } else {
+            ans += (k*a[i] + (m-k)*p + bsum[k-1]);
         }
     }
 
