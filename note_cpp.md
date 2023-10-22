@@ -66,3 +66,15 @@ iota(a.begin(), a.end(), 0)
 ```
 `next_permutation`と合わせて使う  
 - [c++23でrangesに入るらしい](https://cpprefjp.github.io/reference/numeric/ranges_iota.html)
+
+
+# 競プロ特有？
+- 数値をcharからintに
+    ```
+    c - '0'
+    ```
+
+- アルファベットをcharではなくintで管理したい
+    ```
+    c - 'a'
+    ```
