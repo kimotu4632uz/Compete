@@ -5,7 +5,7 @@
 
 - D  
 じがんないにおわらなかった  
-queueとpriority_queueでうまく回すだけ
+queueとpriority_queueでうまく回すだけ  
 時刻を進めつつpqが空になったら次のアイテムの時刻まで飛ばすといい感じにforみたいに回せる  
 
 - E  
