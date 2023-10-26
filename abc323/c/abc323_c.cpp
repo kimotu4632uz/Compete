@@ -28,8 +28,12 @@ int main() {
         }
         scn[i] = score;
     }
+    
+    vector<int> max_idx(m);
+    iota(all(max_idx), 0);
+    ranges::sort(max_idx, [&sc](int a, int b) {return sc[a] > sc[b];});
 
-    auto maxit = max_element(all(scn));
+    auto maxit = ranges::max_element(scn);
     ll maxs = *maxit;
     int maxi = distance(scn.begin(), maxit);
 
@@ -40,20 +44,17 @@ int main() {
             continue;
         }
 
-        bool end=false;
-        for (int w: seq(1,m+1)) {
-            for (int j: seq(m+1-w)) {
-                ll now = scn[i];
-                for (int k: seq(w)) {
-                    if (!solved[i][j+k]) now += sc[j+k];
-                }
+        ll now = scn[i];
+        int count = 0;
+        for (int j: seq(m)) {
+            if (!solved[i][max_idx[j]]) {
+                now += sc[max_idx[j]];
+                ++count;
                 if (now > maxs) {
-                    cout << w << endl;
-                    end = true;
+                    cout << count << endl;
                     break;
                 }
             }
-            if (end) break;
         }
     }
 
