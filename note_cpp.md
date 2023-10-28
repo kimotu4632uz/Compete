@@ -1,9 +1,5 @@
-- vector内でi以上の最初の値がほしい
-    - 二分探索 -> lower_bound
-
-- priority_queue: [リファレンス](https://cpprefjp.github.io/reference/queue/priority_queue.html)
-
-# 指数形式
+# 数値関係
+## 指数形式
 ```
 1200 = 1.2e3
 ```
@@ -14,9 +10,17 @@
 となる
 
 
-# intの最大値
+## intの最大値
 - int : **10^9**
 - longlong : 10^19
+
+
+## 小数点出力
+`d`をdoubleとして小数点以下15桁で出力  
+```
+cout << fixed << setprecision(15) << d
+```
+デフォでは5桁なので注意
 
 
 # 文字列処理
